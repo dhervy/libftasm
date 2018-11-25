@@ -1,4 +1,6 @@
 global _ft_bzero
+extern _ft_pushreg
+extern _ft_popreg
 
 section .text
 
@@ -12,8 +14,8 @@ _ft_bzero:
 	jmp end
 
 my_loop:
-	mov [rax], byte 0
-	inc rax
+	mov [rdi], byte 0
+	inc rdi
 	loop my_loop
 
 end:

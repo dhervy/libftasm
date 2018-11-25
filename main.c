@@ -1,11 +1,4 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define GREEN  "\x1B[32m"
-#define RED  "\x1B[31m"
-#define RESET  "\x1B[0m"
+#include "./includes/libftasm.h"
 
 void KO()
 {
@@ -246,10 +239,18 @@ void	*ft_memset(void *b, int c, size_t len);
 void test_memset()
 {
 	char *toto = strdup("123456789\0");
+	char *toto2 = strdup("123456789\0");
+	char *tutu = strdup("This is a string");
+	char *tutu2 = strdup("This is a string");
 
 	print("test_memset : \n\0");
 
-	if (strcmp(ft_memset(toto, 'c', 9), "ccccccccc\0"))
+	if (strcmp(ft_memset(toto, 'c', 9), memset(toto2, 'c', 9)))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_memset(tutu, 65, strlen(tutu)), memset(tutu2, 65, strlen(tutu))))
 		KO();
 	else
 		OK();
@@ -263,7 +264,28 @@ void test_memcpy()
 
 	print("test_memcpy : \n\0");
 
-	if (strcmp(ft_memcpy(toto, "56789\0", 6), "123456789\0"))
+	if (strcmp(ft_memcpy(toto, "56789\0", 6), "56789\0"))
+		KO();
+	else
+		OK();
+}
+
+void test_strdup()
+{
+
+	print("test_strdup : \n\0");
+
+	if (strcmp(ft_strdup("1234\0"), strdup("1234\0")))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strdup("\0"), strdup("\0")))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strdup(""), strdup("")))
 		KO();
 	else
 		OK();
@@ -284,5 +306,6 @@ int main()
 	test_strlen();
 	test_memset();
 	test_memcpy();
+	test_strdup();
 	return 1;
 }

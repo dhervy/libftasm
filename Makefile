@@ -13,13 +13,16 @@ SRC = ft_bzero.s \
 	ft_strlen.s \
 	ft_memset.s \
 	ft_memcpy.s \
+	ft_strdup.s \
+	ft_pushreg.s \
+	ft_popreg.s \
 
 
 
 OBJ = $(SRC:.s=.o)
 FLAGS =  -Wall -Wextra -Werror
 NASMFLAGS = -f macho64
-NASM = ~/.brew/bin/nasm
+NASM = nasm #~/.brew/bin/nasm
 
 all: $(NAME)
 
@@ -34,4 +37,8 @@ clean:
 		@rm -rf $(OBJ)
 fclean: clean
 		@rm -rf $(NAME)
+
 re: fclean all
+
+test: re
+	gcc ${FLAGS} -o test main.c $(NAME) -I includes

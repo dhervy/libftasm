@@ -3,16 +3,13 @@ global _ft_memset
 section .text
 
 _ft_memset:
-	push rdi
-
-my_loop:
-	cmp rdx, 0
-	jle end
-	mov byte [rdi], sil
-	inc rdi
-	dec rdx
-	loop my_loop
-
+	mov r8, rdi
+	mov rcx, rdx
+	mov al, sil
+	cld
+	rep stosb
+	mov rdi, r8
+	mov rax, rdi
+	
 end:
-	pop rax
 	ret
