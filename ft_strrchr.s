@@ -1,26 +1,26 @@
-global _ft_strchr
+global _ft_strrchr
 extern _ft_strlen
 
 section .text
-_ft_strchr:
+_ft_strrchr:
 	push rbp
 	mov rbp, rsp
 	push rdi
 	push rdx
-	mov rdx, rsi
+	mov rax, 0
     call _ft_strlen
     mov rcx, rax
-	inc rcx
 	mov rax, 0
+	add rdi, rcx
 
-strchr:
-	cmp byte [rdi], dl
+strrchr:
+	cmp byte [rdi], sil
 	je find
-	inc rdi
-	dec rcx
+	dec rdi
 	cmp rcx, 0
 	je end
-	jmp strchr
+	dec rcx
+	jmp strrchr
 
 end:
 	pop rdx

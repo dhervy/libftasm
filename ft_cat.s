@@ -21,25 +21,17 @@ my_loop:
 	push rdi
 	push rdx
 	push rsi
-
-read:
 	mov rax, MACH_SYSCALL(READ)
 	syscall
 	jc end_error
-
-to_write:
 	mov rdi, STDOUT
 	mov rdx, rax
 	pop rsi
 	push rsi
 	push rax
-
-write:
 	mov rax, MACH_SYSCALL(WRITE)
 	syscall
 	jc end_error
-
-to_read:
 	pop rax
 	pop rsi
 	pop rdx

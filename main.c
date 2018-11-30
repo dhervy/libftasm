@@ -234,8 +234,6 @@ void test_strlen()
 		KO();
 }
 
-void	*ft_memset(void *b, int c, size_t len);
-
 void test_memset()
 {
 	char *toto = strdup("123456789\0");
@@ -256,8 +254,6 @@ void test_memset()
 		OK();
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-
 void test_memcpy()
 {
 	char *toto = strdup("1234\0");
@@ -275,7 +271,7 @@ void test_strdup()
 
 	print("test_strdup : \n\0");
 
-	if (strcmp(ft_strdup("1234\0"), strdup("1234\0")))
+	if (strcmp(ft_strdup("12345\0"), strdup("12345\0")))
 		KO();
 	else
 		OK();
@@ -289,6 +285,91 @@ void test_strdup()
 		KO();
 	else
 		OK();
+}
+
+void test_strndup()
+{
+
+	print("test_strndup : \n\0");
+	if (strcmp(ft_strndup("12345\0", 3), strndup("12345\0", 3)))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strndup("\0", 1), strndup("\0", 1)))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strndup("", 1), strndup("", 1)))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strndup("tutuut\0", strlen("tutuut\0")), strndup("tutuut\0", strlen("tutuut\0"))))
+		KO();
+	else
+		OK();
+}
+
+void test_strchr()
+{
+	print("test_strchr : \n\0");
+	if (strcmp(ft_strchr("123456789\0", '5'), strchr("123456789\0", '5')))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strchr("abcdefghijklmnopqrstuvwxyz\0", 't'), strchr("abcdefghijklmnopqrstuvwxyz\0", 't')))
+		KO();
+	else
+		OK();
+
+	if (ft_strchr("abcdefghijklmnopqrstuvwxyz\0", 'T') == strchr("abcdefghijklmnopqrstuvwxyz\0", 'T'))
+		OK();
+	else
+		KO();
+
+	if (ft_strchr("abcdefghijklmnopqrstuvwxyz\0", '5') == strchr("abcdefghijklmnopqrstuvwxyz\0", '5'))
+		OK();
+	else
+		KO();
+
+	if (strcmp(ft_strchr("abcdefghijklmnopqrstuvwxyz\0", '\0'), strchr("abcdefghijklmnopqrstuvwxyz\0", '\0')))
+		KO();
+	else
+		OK();
+}
+
+void test_strrchr()
+{
+
+	print("test_strrchr : \n\0");
+	if (strcmp(ft_strrchr("123456789\0", '5'), strrchr("123456789\0", '5')))
+		KO();
+	else
+		OK();
+
+	if (strcmp(ft_strrchr("abcdefghijklmnopqrstuvwxyz\0", 't'), strrchr("abcdefghijklmnopqrstuvwxyz\0", 't')))
+		KO();
+	else
+		OK();
+
+	if (ft_strrchr("abcdefghijklmnopqrstuvwxyz\0", 'T') == strrchr("abcdefghijklmnopqrstuvwxyz\0", 'T'))
+		OK();
+	else
+		KO();
+
+	if (ft_strrchr("abcdefghijklmnopqrstuvwxyz\0", '5') == strrchr("abcdefghijklmnopqrstuvwxyz\0", '5'))
+		OK();
+	else
+		KO();
+
+	if (strcmp(ft_strrchr("abcdefghijklmnopqrstuvwxyz\0", '\0'), strrchr("abcdefghijklmnopqrstuvwxyz\0", '\0')))
+		KO();
+	else
+		OK();
+
 }
 
 int main()
@@ -307,5 +388,8 @@ int main()
 	test_memset();
 	test_memcpy();
 	test_strdup();
+	test_strchr();
+	test_strrchr();
+	test_strndup();
 	return 1;
 }

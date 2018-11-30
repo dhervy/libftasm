@@ -21,9 +21,9 @@ int		ft_isspace(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_puts(const char *s);
-size_t	ft_strlen(char *str);
-void	*ft_memset(void *s, int c, size_t n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+size_t	ft_strlen(const char *s);
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strdup(const char *s);
 void	ft_cat(int fd);
 int		ft_isblank(int c);
@@ -32,5 +32,8 @@ int		ft_isupper(int c);
 void	*ft_memalloc(size_t size);
 int		ft_abs(int i);
 int		ft_square(int i);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strndup(const char *s1, size_t len);
 
 #endif

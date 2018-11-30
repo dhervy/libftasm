@@ -4,18 +4,22 @@ section .text
 _ft_strlen:
 	push rbp
 	mov rbp, rsp
-	mov r8, rdi
+	push rdi
 	mov rax, 0
+	mov rcx, -1
+	test rdi, rdi
+	jz end
 
 count_len:
-	cmp byte [rdi], 0
-		je end
-	inc rdi
-	inc rax
-	jmp count_len
+	mov al, 0
+	cld
+	repne scasb
+	not rcx
+	dec rcx
 
 end:
-	mov rdi, r8
+	mov rax, rcx
+	pop rdi
 	mov rsp, rbp
 	pop rbp
 	ret
