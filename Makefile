@@ -14,15 +14,13 @@ SRC = ft_bzero.s \
 	ft_memset.s \
 	ft_memcpy.s \
 	ft_strdup.s \
-	ft_pushreg.s \
-	ft_popreg.s \
-
+	ft_cat.s 
 
 
 OBJ = $(SRC:.s=.o)
 FLAGS =  -Wall -Wextra -Werror
 NASMFLAGS = -f macho64
-NASM = nasm #~/.brew/bin/nasm
+NASM = ~/.brew/bin/nasm
 
 all: $(NAME)
 

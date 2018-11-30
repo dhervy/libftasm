@@ -4,9 +4,6 @@
 
 global _ft_puts
 
-section .data
-newline db 0xA
-
 section .text
 _ft_puts:
 	push rdi
@@ -25,11 +22,6 @@ count_len:
 print:
 	mov rdi, STDOUT
 	mov rsi, rbx
-	mov rax, MACH_SYSCALL(WRITE)
-	syscall
-
-	lea rsi, [rel newline]
-	mov rdx, 1
 	mov rax, MACH_SYSCALL(WRITE)
 	syscall
 

@@ -1,5 +1,4 @@
 %define MACH_SYSCALL(nb)	0x2000000 | nb
-%define STDOUT				1
 %define WRITE				4
 
 global _ft_puts
@@ -23,7 +22,7 @@ count_len:
 	jmp count_len
 
 print:
-	mov rdi, STDOUT
+	mov rdi, rsi
 	mov rsi, rbx
 	mov rax, MACH_SYSCALL(WRITE)
 	syscall
